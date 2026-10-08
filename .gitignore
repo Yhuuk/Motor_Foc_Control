@@ -1,0 +1,90 @@
+# -----------------------------------------------------------------------------
+# Build directories
+# -----------------------------------------------------------------------------
+/build/
+/out/
+/cmake-build-*/
+/Debug/
+/Release/
+/Objects/
+/Listings/
+
+# CMake / Ninja generated files (also covers accidental in-source builds)
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/compile_commands.json
+/build.ninja
+/.ninja_deps
+/.ninja_log
+/Makefile
+
+# -----------------------------------------------------------------------------
+# Compiler, linker and firmware outputs
+# -----------------------------------------------------------------------------
+*.o
+*.obj
+*.d
+*.dep
+*.su
+*.elf
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.lnp
+*.crf
+
+# -----------------------------------------------------------------------------
+# STM32CubeMX generated scratch/state files
+# Keep *.ioc, .mxproject, .settings/, .vscode/, source files and linker scripts.
+# -----------------------------------------------------------------------------
+/mx.scratch/
+/.cubemx-generate.txt
+/*.normalized.ioc
+
+# -----------------------------------------------------------------------------
+# Keil MDK user-specific and generated files
+# Keep shared project files such as *.uvproj and *.uvprojx.
+# -----------------------------------------------------------------------------
+*.uvopt
+*.uvoptx
+*.uvguix.*
+*.uvgui.*
+*.uvgui
+*.uvguix
+*.build_log.htm
+*.build_log.html
+JLinkLog.txt
+
+# -----------------------------------------------------------------------------
+# Editor caches and local workspace state
+# -----------------------------------------------------------------------------
+/.cache/
+/.clangd/index/
+/.idea/
+/.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+*~
+
+# -----------------------------------------------------------------------------
+# Logs, temporary files and operating-system metadata
+# -----------------------------------------------------------------------------
+*.log
+*.tmp
+*.temp
+*.bak
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# -----------------------------------------------------------------------------
+# VScode settings and extensions
+# -----------------------------------------------------------------------------
+.vscode/
