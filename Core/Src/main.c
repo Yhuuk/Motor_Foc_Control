@@ -22,13 +22,14 @@
 #include "dma.h"
 #include "fdcan.h"
 #include "spi.h"
+#include "stm32h7xx_hal_gpio.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "motor_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,16 +109,27 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-
+  if (MotorDriver_Init() != MOTOR_DRIVER_STATUS_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  HAL_GPIO_WritePin(LED_G_GPIO_Port,LED_G_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LED_Y_GPIO_Port,LED_Y_Pin, GPIO_PIN_SET);
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    HAL_GPIO_WritePin(LED_B_GPIO_Port,LED_B_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+    HAL_GPIO_WritePin(LED_B_GPIO_Port,LED_B_Pin, GPIO_PIN_RESET);
+    HAL_Delay(500);
+    
   }
   /* USER CODE END 3 */
 }
@@ -181,6 +193,19 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+/**
+  * @brief Dispatch GPIO interrupts that belong to application-level modules.
+  * @param GPIO_Pin GPIO pin mask supplied by the STM32 HAL EXTI dispatcher.
+  * @retval None
+  */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  if (GPIO_Pin == DRV8313_FAULT_Pin)
+  {
+    MotorDriver_HandleFaultInterrupt();
+  }
+}
 
 /* USER CODE END 4 */
 

@@ -101,7 +101,7 @@ void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : DRV8313_FAULT_Pin */
   GPIO_InitStruct.Pin = DRV8313_FAULT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(DRV8313_FAULT_GPIO_Port, &GPIO_InitStruct);
 
